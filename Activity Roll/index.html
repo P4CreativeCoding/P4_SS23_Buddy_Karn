@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Würfel deine Woche</title>
+    <style>
+        .zentriert {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+        
+        .bild-container {
+          display: flex;
+        }
+        
+        .bild-container img {
+          width: 480px;
+          height: auto;
+          margin-right: 10px;
+        }
+        
+        .custom-button {
+          padding: 10px 20px;
+          background-color: green;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        
+        #countdown {
+          margin-top: 10px;
+        }
+
+        .centered-p {
+        text-align: center;
+      }
+      </style>
+    <script>
+      function zufälligeBilder() {
+        var bilder = [
+          "./src/krafttraining1.png",
+          "./src/krafttraining2.png",
+          "./src/radfahren1.png",
+          "./src/radfahren2.png",
+          "./src/schwimmen1.png",
+          "./src/schwimmen2.png",
+          "./src/spazieren1.png",
+          "./src/spazieren2.png",
+          "./src/yoga1.png",
+          "./src/yoga2.png",
+          "./src/physio1.png",
+          "./src/physio2.png",
+        ];
+
+        var ausgewählteBilder = [];
+        var summe = 0;
+
+        while (summe < 7) {
+          var zufallsIndex = Math.floor(Math.random() * bilder.length);
+          var bildquelle = bilder[zufallsIndex];
+
+          var sportlicheAktivität = bildquelle
+            .split("/")
+            .pop()
+            .split(".")[0]
+            .split(/[0-9]+/)[0];
+
+          if (!ausgewählteBilder.includes(sportlicheAktivität)) {
+            var zahl = parseInt(bildquelle.match(/[0-9]+/)[0]);
+            if (summe + zahl <= 7) {
+              ausgewählteBilder.push(sportlicheAktivität);
+              summe += zahl;
+              var bildElement = document.getElementById(
+                "bild" + ausgewählteBilder.length
+              );
+              bildElement.src = bildquelle;
+            }
+          }
+
+          if (ausgewählteBilder.length === 4) {
+            break;
+          }
+        }
+        
+        var button = document.getElementById("bild-button");
+        button.disabled = true;
+        
+        var countdownElement = document.getElementById("countdown");
+        var remainingTime = 7;
+        countdownElement.textContent = remainingTime;
+        
+        var countdownInterval = setInterval(function() {
+          remainingTime--;
+          countdownElement.textContent = remainingTime;
+          
+          if (remainingTime === 0) {
+            clearInterval(countdownInterval);
+            button.disabled = false;
+          }
+        }, 1000);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="zentriert">
+        <h1>Würfel deine Woche!</h1>
+        <button id="bild-button" class="custom-button" onclick="zufälligeBilder()">Neue Aktivitäten</button>
+        <br>
+        <div id="countdown">7
+        </div>
+        <div class="centered-p">
+            <p>Man kann nur 1-Mal pro Woche würfeln. <br> 
+                Um das zu simulieren gibt es ein Timeout, nachdem man den Button gedrückt (oder die Seite neu geladen) hat.
+                <br> Erst danach kann man neue Aktivitäten würfeln.</p>
+          </div>
+        <br>
+        <div class="bild-container">
+          <img id="bild1" src="" alt="Bild 1">
+          <img id="bild2" src="" alt="Bild 2">
+          <img id="bild3" src="" alt="Bild 3">
+          <img id="bild4" src="" alt="Bild 4">
+        </div>
+      </div>
+    <script>
+      zufälligeBilder(); // Rufen Sie die Funktion einmalig auf, um beim Laden der Seite zufällige Bilder anzuzeigen
+    </script>
+</html>
