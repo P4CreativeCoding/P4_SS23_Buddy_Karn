@@ -48,10 +48,139 @@ Die Funktionalität des Würfels kann man zudem über folgende Website testen: h
 - 2x
   Tastschalter
 
-...und sehr viele Jumber Wires und ein Breadboard.
+...Jumber Wires und ein Breadboard.
 
 <hr>
 
 ### Inbetriebnahme
 
-(Schaltpläne, Anleitung, etc.)
+ESP32 Board Manager in die Arduino IDE hinzufügen: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+
+<br>
+
+Schaltplan für **P4_SS23_Server.ino und P4_SS23_Client.ino**
+<img src="./src/Schaltplan1.png" alt="Schaltplan 1"/>  
+
+1. Die Bauteile (2x ESP32,1x TFT Display, 1x MPU5060 Beschleunigungssensor) dem Schaltplan entsprechend anschließen.
+
+2. ESP32 1 und ESP32 2 per USB an den Computer anschließen.
+
+3. Die Dateien P4_SS23_Server.ino und P4_SS23_Client.ino über die Arduino IDE öffnen.
+
+4. Die benötigen Bibliotheken in der Arduino IDE runter laden.
+
+```
+P4_SS23_Server.ino
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <ESPAsyncWebServer.h>
+#include <Wire.h>
+#include <MPU6050.h>
+#include <TFT_eSPI.h>
+
+P4_SS23_Client.ino
+#include <WiFi.h>
+#include <HTTPClient.h>
+```
+
+5. Die WLAN-Anmeldedaten in beiden Dateien editieren.
+
+
+```
+const char* ssid = "SSID";
+const char* password = "Password";
+```
+
+6. Die editierten Dateien auf die beiden ESP32 laden. P4_SS23_Server.ino auf ESP32 1 und P4_SS23_Client.ino auf ESP32 2.
+
+7. Den Seriellen Monitor bei beiden öffnen.
+
+8. Sobald man mit dem WLAN verbunden ist, den Button 2 betätigen, um einen http.GET request zu senden.
+
+9. Über den Button 1 kann eine Antwort auf den Request gesendet werden. Über die Seriellen Monitore kann der Status verfolgt werden
+
+10. Den Beschleunigungssensor in die Hand nehmen und bewegen.
+
+11. Die aufgezeichneten Schritte werden im Seriellen Monitor und auf dem Display angezeigt.
+
+<br>
+
+
+
+Schaltplan für **P4_SS23_Wuerfel.ino**
+<img src="./src/Schaltplan2.png" alt="Schaltplan 2"/>  
+
+1. Die Bauteile (ESP32 und MPU5060 Beschleunigungssensor) dem Schaltplan entsprechend anschließen.
+
+2. ESP32 per USB an den Computer anschließen.
+
+3. Die Datei P4_SS23_Wuerfel.ino über die Arduino IDE öffnen.
+
+4. Die WLAN-Anmeldedaten in der Datei editieren.
+
+
+```
+const char* ssid = "SSID";
+const char* password = "Password";
+```
+
+5. Die benötigen Bibliotheken in der Arduino IDE runter laden.
+
+```
+#include <WiFi.h>
+#include <Wire.h>
+#include <MPU6050.h>
+```
+
+5. Die editierten Dateien auf den ESP32 laden.
+
+6. Den Seriellen Monitor öffnen.
+
+7. Sobald man mit dem WLAN verbunden ist, die Adresse des Webservers kopieren (steht in Seriellen Monitor).
+
+8. Die Adresse des Webservers im Webbrowser anzeigen.
+
+9. Den Beschleunigungssensor in die Hand nehmen und bewegen.
+
+10. Die aufgezeichneten Schritte werden im Seriellen Monitor und im Webbrowser durch den Webserver angezeigt.
+
+<br>
+
+Schaltplan für **P4_SS23_Pulssensor.ino**
+<img src="./src/Schaltplan3.png" alt="Schaltplan 3"/>  
+
+1. Die Bauteile (ESP32 und Pulssensor) dem Schaltplan entsprechend anschließen.
+
+2. ESP32 per USB an den Computer anschließen.
+
+3. Die Datei P4_SS23_Pulssensor.ino über die Arduino IDE öffnen.
+
+4. Die benötigte Bibliothek in der Arduino IDE runter laden.
+
+```
+#include <PulseSensorPlayground.h>
+```
+
+5. Die Datei auf den ESP32 laden.
+
+6. Den Seriellen Monitor öffnen.
+
+7. Den Pulssensor zwischen zwei Fingern halten.
+
+8. Im Seriellen Monitor werden die BPM angezeigt. (Leider ist der Pulssenor defekt, weswegen es nicht richtig funktioniert.)
+
+### Verwendete Tutorials
+
+https://randomnerdtutorials.com/getting-started-with-esp32/
+https://esp32io.com/tutorials/esp32-button 
+https://aliakbarfani.wordpress.com/part-2-setting-up-pulse-sensor-with-esp32-and-arduino-ide/
+https://randomnerdtutorials.com/esp32-mpu-6050-accelerometer-gyroscope-arduino/
+
+Hinweis: ChatGPT hat beim Bug Fixing geholfen.
+
+```
+Buddy
+
+Hochschule Darmstadt - Sommersemester 23 - Fachsemester 4
+Ein Semesterprojekt von Kim Karn
+```
