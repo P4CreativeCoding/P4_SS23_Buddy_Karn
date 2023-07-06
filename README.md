@@ -48,7 +48,12 @@ Die Funktionalität des Würfels kann man zudem über folgende Website testen: h
 - 2x
   Tastschalter
 
-...Jumber Wires und ein Breadboard.
+- 2x USB zu mircoUSB Kabel
+- 14x Buchse/Buchse Jumper Wire
+- 5x Buchse/Stecker Jumper Wire
+- 1x Stecker/Stecker Jumper Wire
+
+...und ein Breadboard.
 
 <hr>
 
@@ -59,7 +64,7 @@ ESP32 Board Manager in die Arduino IDE hinzufügen: https://raw.githubuserconten
 <br>
 
 Schaltplan für **P4_SS23_Server.ino und P4_SS23_Client.ino**
-<img src="./src/Schaltplan1.png" alt="Schaltplan 1"/>  
+<img src="./src/Schaltplan1.png" alt="Schaltplan 1"/>
 
 1. Die Bauteile (2x ESP32,1x TFT Display, 1x MPU5060 Beschleunigungssensor) dem Schaltplan entsprechend anschließen.
 
@@ -85,7 +90,6 @@ P4_SS23_Client.ino
 
 5. Die WLAN-Anmeldedaten in beiden Dateien editieren.
 
-
 ```
 const char* ssid = "SSID";
 const char* password = "Password";
@@ -105,10 +109,8 @@ const char* password = "Password";
 
 <br>
 
-
-
 Schaltplan für **P4_SS23_Wuerfel.ino**
-<img src="./src/Schaltplan2.png" alt="Schaltplan 2"/>  
+<img src="./src/Schaltplan2.png" alt="Schaltplan 2"/>
 
 1. Die Bauteile (ESP32 und MPU5060 Beschleunigungssensor) dem Schaltplan entsprechend anschließen.
 
@@ -117,7 +119,6 @@ Schaltplan für **P4_SS23_Wuerfel.ino**
 3. Die Datei P4_SS23_Wuerfel.ino über die Arduino IDE öffnen.
 
 4. Die WLAN-Anmeldedaten in der Datei editieren.
-
 
 ```
 const char* ssid = "SSID";
@@ -147,7 +148,7 @@ const char* password = "Password";
 <br>
 
 Schaltplan für **P4_SS23_Pulssensor.ino**
-<img src="./src/Schaltplan3.png" alt="Schaltplan 3"/>  
+<img src="./src/Schaltplan3.png" alt="Schaltplan 3"/>
 
 1. Die Bauteile (ESP32 und Pulssensor) dem Schaltplan entsprechend anschließen.
 
@@ -172,7 +173,7 @@ Schaltplan für **P4_SS23_Pulssensor.ino**
 ### Verwendete Tutorials
 
 https://randomnerdtutorials.com/getting-started-with-esp32/
-https://esp32io.com/tutorials/esp32-button 
+https://esp32io.com/tutorials/esp32-button
 https://aliakbarfani.wordpress.com/part-2-setting-up-pulse-sensor-with-esp32-and-arduino-ide/
 https://randomnerdtutorials.com/esp32-mpu-6050-accelerometer-gyroscope-arduino/
 
